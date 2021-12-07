@@ -23,8 +23,7 @@
       Object.keys(players).forEach((playerId) => {
         let player = players[playerId]
         let direction
-        ctx.fillStyle = player.colour;
-        ctx.fill()
+        
 
         if (playerId == socket.id) {
           direction = localDirection
@@ -53,6 +52,8 @@
             ctx.lineTo(player.x/5+10, player.y/5+40);
             ctx.fillStyle = 'black'
             ctx.fillRect(player.x/5, player.y/5 - accelWidth, playerSize/5, accelWidth);
+            ctx.fillStyle = player.colour;
+            ctx.fill()
             break
           case 'down':
             if (aud.paused){
@@ -68,6 +69,8 @@
             ctx.lineTo(player.x/5+10, player.y/5-40+ playerSize/5);
             ctx.fillStyle = 'black'
             ctx.fillRect(player.x/5, player.y/5  + playerSize/5, playerSize/5, accelWidth);
+            ctx.fillStyle = player.colour;
+            ctx.fill()
             break
           case 'left':
             if (aud.paused){
@@ -83,6 +86,8 @@
             ctx.lineTo(player.x/5+40, player.y/5+10);
             ctx.fillStyle = 'black'
             ctx.fillRect(player.x/5 - accelWidth, player.y/5, accelWidth, playerSize/5);
+            ctx.fillStyle = player.colour;
+            ctx.fill()
             break
           case 'right':
             if (aud.paused){
@@ -98,6 +103,8 @@
             ctx.lineTo(player.x/5-40+ playerSize/5, player.y/5+10);
             ctx.fillStyle = 'black'
             ctx.fillRect(player.x/5 + playerSize/5, player.y/5, accelWidth, playerSize/5);
+            ctx.fillStyle = player.colour;
+            ctx.fill()
 
         }
       })
@@ -118,9 +125,12 @@
       let scores = ''
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {
         scores += "<p><span style='color: " + player.colour + ";'>" + player.name + "</span> has " + player.score + " piece(s) of food</p>"
+        
+      })
+      Object.keys(players).forEach((playerId) => {
+        let player = players[playerId]
         document.getElementById('intro').innerHTML= "You are "+"<span style='color: " + player.colour + ";'>" + player.name + "</span>"+"!"+"<br>"+"Use 'w','a','s','d' or arrow keys to control it!"
       })
-
 
      
       document.getElementById('scores').innerHTML = scores
