@@ -129,7 +129,10 @@
       })
       Object.keys(players).forEach((playerId) => {
         let player = players[playerId]
-        document.getElementById('intro').innerHTML= "You are "+"<span style='color: " + player.colour + ";'>" + player.name + "</span>"+"!"+"<br>"+"Use 'w','a','s','d' or arrow keys to control it!"
+        if (playerId == socket.id) {
+          
+          document.getElementById('intro').innerHTML= "You are "+"<span style='color: " + player.colour + ";'>" + player.name + "</span>"+"!"+"<br>"+"Use 'w','a','s','d' or arrow keys to control it!"
+        }
       })
 
      
